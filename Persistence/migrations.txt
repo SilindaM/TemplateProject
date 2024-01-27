@@ -1,0 +1,3 @@
+﻿﻿dotnet ef migrations add Initial -s .\API -p .\Persistence
+
+dotnet ef database update -s .\API -p .\Persistence
