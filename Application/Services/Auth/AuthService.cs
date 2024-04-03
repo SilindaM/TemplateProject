@@ -66,7 +66,7 @@
 
     public async Task<LoginServiceResponseDto> LoginAsync(LoginDto loginDto)
     {
-      var user = await userManager.FindByEmailAsync(loginDto.Username);
+      var user = await userManager.FindByNameAsync(loginDto.Username);
       if(user is null)
       {
         return null;
@@ -143,25 +143,25 @@
 
     public async Task<GeneralServiceResponseDto> SeedRolesAsync()
     {
-      string[] rolesToSeed = { StaticUserRoles.OWNER, StaticUserRoles.ADMIN, StaticUserRoles.MANAGER, StaticUserRoles.USER };
+      bool isOwnerRoleExists = await roleManager.RoleExistsAsync(StaticUserRoles.OWNER);
+      bool isAdminRoleExists = await roleManager.RoleExistsAsync(StaticUserRoles.ADMIN);
+      bool isManagerRoleExists = await roleManager.RoleExistsAsync(StaticUserRoles.MANAGER);
+      bool isUserRoleExists = await roleManager.RoleExistsAsync(StaticUserRoles.USER);
 
-      bool[] rolesExist = await Task.WhenAll(rolesToSeed.Select(role => roleManager.RoleExistsAsync(role)));
-
-      if (rolesExist.All(x => x))
+      if (isOwnerRoleExists && isAdminRoleExists && isManagerRoleExists && isUserRoleExists)
       {
-        return ResponseHelper.CreateResponse(true, 200, "Roles Seeding Already Done");
+        return ResponseHelper.CreateResponse(true, 200, "Roles Seeding Done Successfully");
       }
 
-      for (int i = 0; i < rolesToSeed.Length; i++)
-      {
-        if (!rolesExist[i])
-        {
-          await roleManager.CreateAsync(new IdentityRole(rolesToSeed[i]));
-        }
-      }
+      await roleManager.CreateAsync(new IdentityRole(StaticUserRoles.OWNER));
+      await roleManager.CreateAsync(new IdentityRole(StaticUserRoles.ADMIN));
+      await roleManager.CreateAsync(new IdentityRole(StaticUserRoles.MANAGER));
+      await roleManager.CreateAsync(new IdentityRole(StaticUserRoles.USER));
 
-      return ResponseHelper.CreateResponse(true, 200, "Roles Seeding Successful");
+      return ResponseHelper.CreateResponse(true, 200, "Roles Seeding Done Successfully");
+
     }
+
 
 
     public async Task<GeneralServiceResponseDto> UpdateRoleAsync(ClaimsPrincipal User, UpdateRoleDto updateRoleDto)
