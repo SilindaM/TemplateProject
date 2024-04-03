@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Persistence;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -33,7 +34,33 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+  options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+  {
+    Name = "Authorization",
+    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+    Description = "Enter Token",
+    BearerFormat = "JWT",
+    Scheme = "bearer",
+  });
+  options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            },
+            new List<string>()
+        }
+    });
+});
 
 // Identity configuration
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -80,7 +107,13 @@ if (app.Environment.IsDevelopment())
   app.UseSwagger();
   app.UseSwaggerUI();
 }
-
+app.UseCors(options =>
+{
+  options
+  .AllowAnyHeader()
+  .AllowAnyMethod()
+  .AllowAnyOrigin();
+});
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
