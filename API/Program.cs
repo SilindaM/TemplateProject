@@ -1,3 +1,6 @@
+using Application.Interfaces.Auth;
+using Application.Mappings;
+using Application.Services.Auth;
 using Domain.Account;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +23,9 @@ builder.Services.AddDbContext<DataContext>(options =>
         sqlOptions.EnableRetryOnFailure();
       });
 });
-
+builder.Services.AddScoped<ILogService, LogService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -66,6 +71,7 @@ builder.Services
       };
     });
 
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
