@@ -26,6 +26,7 @@
       return Ok(logs);
     }
 
+    [HttpGet]
     [Route("mine")]
     [Authorize]
     public async Task<ActionResult<IEnumerable<GetLogDto>>> GetMyLogs()
