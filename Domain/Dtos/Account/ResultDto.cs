@@ -1,5 +1,5 @@
-namespace Domain.Dtos
-{ 
+namespace Domain.Dtos.Account
+{
   public class ResultDto<TResponse>
   {
     public bool IsSuccess { get; set; }
