@@ -6,7 +6,9 @@ import Header from './header';
 const Layout = () => {
     const {isAuthenticated}=useAuth();
     const {pathname} = useLocation();
+
     console.log(pathname);
+    
     const sideBarRender=()=>{
         if(isAuthenticated && pathname.toLocaleLowerCase().startsWith('/dashboard')){
             return <Sidebar/>

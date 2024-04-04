@@ -20,4 +20,3 @@ export const PATH_PUBLIC = {
     manager: '/dashboard/manager',
     user: '/dashboard/user',
   };
-  

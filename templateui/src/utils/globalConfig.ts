@@ -1,9 +1,9 @@
 import { PATH_PUBLIC, PATH_DASHBOARD } from "../routes/path";
 
 // URLS
-export const HOST_API_KEY = 'https://localhost:7148/api/';
-export const REGISTER_URL = 'account/register';
-export const LOGIN_URL = 'account/login';
+export const HOST_API_KEY = 'https://localhost:7148/api/Auth';
+export const REGISTER_URL = '/register';
+export const LOGIN_URL = '/login';
 export const ME_URL = '/Auth/me';
 export const USERS_LIST_URL = '/Auth/users';
 export const UPDATE_ROLE_URL = '/Auth/update-role';
