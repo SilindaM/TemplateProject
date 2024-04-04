@@ -26,13 +26,13 @@
 
     public async Task<IEnumerable<GetLogDto>> getLogsAsync()
     {
-      var logs = await dataContext.Logs.OrderByDescending(x => x.CreatedAd).ToListAsync();
+      var logs = await dataContext.Logs.OrderByDescending(x => x.CreatedAt).ToListAsync();
       return mapper.Map<IEnumerable<GetLogDto>>(logs);
     }
 
     public async Task<IEnumerable<GetLogDto>> getMyLogsAsync(ClaimsPrincipal User)
     {
-      var logs = await dataContext.Logs.Where(u=>u.Username==User.Identity.Name).OrderByDescending(x => x.CreatedAd).ToListAsync();
+      var logs = await dataContext.Logs.Where(u=>u.Username==User.Identity.Name).OrderByDescending(x => x.CreatedAt).ToListAsync();
       return mapper.Map<IEnumerable<GetLogDto>>(logs);
     }
 

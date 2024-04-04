@@ -122,7 +122,6 @@
         Email = registerDto.Email,
         FirstName = registerDto.FirstName,
         LastName = registerDto.LastName,
-        Address = registerDto.Address,
         UserName = registerDto.Username,
         SecurityStamp = Guid.NewGuid().ToString(),
       };
