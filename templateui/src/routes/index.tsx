@@ -7,7 +7,7 @@ import RegisterPage from '../pages/public/RegisterPage'
 import UnauthorizedPage from '../pages/public/UnauthorizedPage'
 import AuthGuard from '../auth/AuthGuard'
 import { adminAccessRoles, allAccessRoles, managerAccessRoles, ownerAccessRoles } from '../auth/auth.utils'
-import DashboardPaged from '../pages/dashboard/DashboardPaged'
+import DashboardPage from '../pages/dashboard/DashboardPage'
 import UserPage from '../pages/dashboard/UserPage'
 import InboxPage from '../pages/dashboard/InboxPage'
 import MyLogsPage from '../pages/dashboard/MyLogsPage'
@@ -33,7 +33,7 @@ const GlobalRouter = () => {
         
         {/*Protected Roles all users */}
         <Route element={<AuthGuard roles={allAccessRoles}/>}>
-            <Route path={PATH_DASHBOARD.dashboard} element={<DashboardPaged/>}/>
+            <Route path={PATH_DASHBOARD.dashboard} element={<DashboardPage/>}/>
             <Route path={PATH_DASHBOARD.sendMessage} element={<SendMessagePage/>}/>
             <Route path={PATH_DASHBOARD.inbox} element={<InboxPage/>}/>
             <Route path={PATH_DASHBOARD.myLogs} element={<MyLogsPage/>}/>
