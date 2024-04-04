@@ -60,7 +60,7 @@
 
     public async Task<IEnumerable<GetMessageDto>> GetMessagesAsync()
     {
-      var messages = await dataContext.Messages.OrderByDescending(m=>m.CreatedAd).ToListAsync();
+      var messages = await dataContext.Messages.OrderByDescending(m=>m.CreatedAt).ToListAsync();
       return mapper.Map<IEnumerable<GetMessageDto>>(messages);
     }
 
@@ -69,7 +69,7 @@
       var loggedInUser = User.Identity.Name;
       var messages = await dataContext.Messages
           .Where(m => m.SenderUsername == loggedInUser || m.ReceiverUserName == loggedInUser)
-          .OrderByDescending(m => m.CreatedAd)
+          .OrderByDescending(m => m.CreatedAt)
           .ToListAsync();
 
       return mapper.Map<IEnumerable<GetMessageDto>>(messages);

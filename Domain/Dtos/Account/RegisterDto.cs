@@ -15,8 +15,5 @@ namespace Domain.Dtos.Account
 
     [Required(ErrorMessage = "Password Required")]
     public string Password { get; set; }
-
-    [Required(ErrorMessage = "Address Required")]
-    public string Address { get; set; }
   }
 }
