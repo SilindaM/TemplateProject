@@ -20,7 +20,6 @@ const RegisterPage = () => {
     userName: Yup.string().required('User Name is required'),
     email: Yup.string().required('Email is required').email('Input text must be a valid email'),
     password: Yup.string().required('Password is required').min(8, 'Password must be at least 8 character'),
-    address: Yup.string().required('Address Is required'),
   });
 
   const {
@@ -36,7 +35,6 @@ const RegisterPage = () => {
       userName: '',
       email: '',
       password: '',
-      address: '',
     },
   });
 
@@ -86,7 +84,6 @@ const RegisterPage = () => {
           inputType='password'
           error={errors.password?.message}
         />
-        <InputField control={control} label='Address' inputName='address' error={errors.address?.message} />
 
         <div className='px-4 mt-2 mb-6 w-9/12 flex gap-2'>
           <h1>Already Have an account?</h1>
