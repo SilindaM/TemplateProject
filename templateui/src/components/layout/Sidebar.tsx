@@ -1,4 +1,3 @@
-import React from "react";
 import useAuth from "../../hooks/useAuth.hook";
 import { useNavigate } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
