@@ -3,5 +3,5 @@ select * from AspNetRoles
 select * from AspNetUserRoles
 
 UPDATE AspNetUserRoles
-SET RoleId = '18a5e690-0cc7-4295-9a64-ca60e345e2f9'
-WHERE UserId='dd34d4cb-e5ae-4306-ad32-29eac20b8fe4';
+SET RoleId = '47bdab0c-2297-4b9a-a786-43fbe7c338b9'
+WHERE UserId='d85311fa-b2f5-4f48-ae45-37bcb2fa19fe';
