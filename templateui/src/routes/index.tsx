@@ -28,7 +28,7 @@ const GlobalRouter = () => {
         <Route element={<Layout />}>
           
           {/* Public routes */}
-          <Route index element={<HomePage />} />
+          <Route index element={<LoginPage />} />
           <Route path={PATH_PUBLIC.register} element={<RegisterPage />} />
           <Route path={PATH_PUBLIC.login} element={<LoginPage />} />
           <Route path={PATH_PUBLIC.unauthorized} element={<UnauthorizedPage />} />

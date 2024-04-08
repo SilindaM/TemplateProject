@@ -8,9 +8,9 @@ interface IProps {
   }
   
   const Button = ({ variant, type, label, onClick, loading, disabled }: IProps) => {
-    const primaryClasses = ' text-white bg-[#754eb4] border-[#754eb4] hover:shadow-[0_0_5px_5px_#754eb44c]';
+    const primaryClasses = ' text-white bg-[#754eb4] border-[#754eb4] hover:shadow-[0_0_5px_5px_#754eb32c]';
   
-    const secondaryClasses = ' text-white bg-amber-400 border-amber-400 hover:shadow-[0_0_5px_5px_#fbbe2465]';
+    const secondaryClasses = ' text-white blue border-amber-400 hover:shadow-[0_0_5px_5px_#fb0e65]';
   
     const dangerClasses = ' text-white bg-[#AE899A] border-[#AE899A] hover:shadow-[0_0_5px_5px_#ae899a70]';
   

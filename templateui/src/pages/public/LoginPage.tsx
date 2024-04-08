@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import useAuth from "../../hooks/useAuth.hook";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,62 +11,55 @@ import InputField from "../../components/general/InputField";
 import { PATH_PUBLIC } from "../../routes/path";
 
 const LoginPage = () => {
-  const [loading,setLoading] = useState<boolean>(false);
-  const {login} = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { login } = useAuth();
 
   const loginSchema = Yup.object().shape({
-    userName: Yup.string().required('userName is required'),
-    password: Yup.string().required('Password is required').min(8, 'Password must be at least 8 character'),
+    userName: Yup.string().required('Username is required'),
+    password: Yup.string().required('Password is required').min(8, 'Password must be at least 8 characters'),
   });
 
   const {
     control,
     handleSubmit,
-    formState:{errors},
+    formState: { errors },
     reset,
-  }=useForm<ILoginDto>({
+  } = useForm<ILoginDto>({
     resolver: yupResolver(loginSchema),
-    defaultValues:{
-      userName:'',
-      password:'',
+    defaultValues: {
+      userName: '',
+      password: '',
     }
-  })
-  const onSubmitLoginForm = async (data:ILoginDto)=>{
+  });
+
+  const onSubmitLoginForm = async (data: ILoginDto) => {
     try {
       setLoading(true);
-      await login(data.userName,data.password);
+      await login(data.userName, data.password);
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      const err = error as {data:string,status:number};
-      const {status} =err;
+      const err = error as { data: string; status: number };
+      const { status } = err;
 
-      if(status===401){
+      if (status === 401) {
         toast.error('Invalid Username or Password');
-      }else{
-        toast.error('An Error occured')
+      } else {
+        toast.error('An error occurred');
       }
     }
-  }
+  };
 
- return (
-    <div className='pageTemplate1'>
-      {/* <div>Left</div> */}
-      <div className='max-sm:hidden flex-1 min-h-[600px] h-4/5 bg-gradient-to-tr from-[#DAC6FB] via-amber-400 to-[#AAC1F6] flex flex-col justify-center items-center rounded-l-2xl'>
-        <div className='h-3/5 p-6 rounded-2xl flex flex-col gap-8 justify-center items-start bg-white bg-opacity-20 border border-[#ffffff55] relative'>
-        
-          <div className='absolute -top-20 right-20 w-48 h-48 bg-gradient-to-br from-[#ef32d9]  to-[#89fffd] rounded-full blur-3xl'></div>
-          <div className='absolute -bottom-20 right-20 w-32 h-32 bg-gradient-to-br from-[#cc2b5e] to-[#753a88] rounded-full blur-3xl'></div>
-        </div>
-      </div>
-      {/* <div>Right</div> */}
+  return (
+    <div className='pageTemplate1 flex justify-center items-center min-h-screen'>
       <form
         onSubmit={handleSubmit(onSubmitLoginForm)}
         className='flex-1 min-h-[600px] h-4/5 bg-[#f0ecf7] flex flex-col justify-center items-center rounded-r-2xl'
+        style={{ maxWidth: "600px" }} // Set max width for the form
       >
         <h1 className='text-4xl font-bold mb-2 text-[#754eb4]'>Login</h1>
 
-        <InputField control={control} label='User Name' inputName='userName' error={errors.userName?.message} />
+        <InputField control={control} label='Username' inputName='userName' error={errors.userName?.message} />
         <InputField
           control={control}
           label='Password'
@@ -89,7 +82,6 @@ const LoginPage = () => {
           <Button variant='secondary' type='button' label='Reset' onClick={() => reset()} />
           <Button variant='primary' type='submit' label='Login' onClick={() => {}} loading={loading} />
         </div>
-        
       </form>
     </div>
   );
