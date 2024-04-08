@@ -1,0 +1,12 @@
+.custom-container {
+    flex-shrink: 0; /* Equivalent to shrink-0 */
+    background-color: #4a65c6; /* Equivalent to bg-[#4a65c6] */
+    width: 60px; /* Equivalent to w-60 */
+    padding: 2px; /* Equivalent to p-2 */
+    min-height: calc(100vh - 48px); /* Equivalent to min-h-[calc(100vh-48px)] */
+    display: flex; /* Equivalent to flex */
+    flex-direction: column; /* Equivalent to flex-col */
+    align-items: stretch; /* Equivalent to items-stretch */
+    gap: 8px; /* Equivalent to gap-8 */
+  }
+  

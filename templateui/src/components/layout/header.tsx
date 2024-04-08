@@ -26,10 +26,8 @@ const Header = () => {
   return (
     <div className='flex justify-between items-center bg-[#f0ecf7] h-12 px-4 '>
       <div className='flex items-center gap-4'>
-        <AiOutlineHome
-          className='w-8 h-8 text-purple-500 hover:text-purple-700 cursor-pointer'
-          onClick={() => navigate('/')}
-        />
+       
+         {isAuthenticated ? (
         <div className='flex gap-1'>
           <h1 className='px-1 border border-dashed border-purple-300 rounded-lg'>
             AuthLoading: {isAuthLoading ? 'True' : '--'}
@@ -44,7 +42,7 @@ const Header = () => {
           <h1 className='px-1 border border-dashed border-purple-300 rounded-lg'>
             UserRoles: {userRolesLabelCreator()}
           </h1>
-        </div>
+        </div>):''}
       </div>
       <div>
         {isAuthenticated ? (
@@ -58,10 +56,7 @@ const Header = () => {
             <Button label='Logout' onClick={logout} type='button' variant='light' />
           </div>
         ) : (
-          <div className='flex items-center gap-2'>
-            <Button label='Register' onClick={() => navigate(PATH_PUBLIC.register)} type='button' variant='light' />
-            <Button label='Login' onClick={() => navigate(PATH_PUBLIC.login)} type='button' variant='light' />
-          </div>
+         ''
         )}
       </div>
     </div>
